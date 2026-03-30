@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        slate: {
+                            750: '#1e293b',
+                            850: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-100 min-h-screen py-8 px-4">
+    <div class="max-w-xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-2xl font-bold text-slate-800">Gestor de Tareas</h1>
+            <p class="text-slate-500 text-sm mt-1">Organiza tu trabajo de forma eficiente</p>
+        </header>
+
+        <main>
+            <!-- Formulario para crear tareas -->
+            <form id="task-form" class="task-form mb-6">
+                <input
+                    type="text"
+                    id="task-input"
+                    placeholder="Escribe una nueva tarea..."
+                    autocomplete="off"
+                    class="flex-1 px-4 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                >
+                <button
+                    type="submit"
+                    id="add-btn"
+                    disabled
+                    class="px-5 py-2.5 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors duration-200"
+                >
+                    Añadir
+                </button>
+            </form>
+
+            <!-- Indicador de carga -->
+            <div id="loading" class="loading hidden">
+                <span class="spinner"></span>
+                <span>Cargando...</span>
+            </div>
+
+            <!-- Mensaje de error -->
+            <div id="error-message" class="error-message hidden"></div>
+
+            <!-- Lista de tareas -->
+            <ul id="task-list" class="task-list space-y-3"></ul>
+
+            <!-- Mensaje cuando no hay tareas -->
+            <p id="empty-message" class="empty-message hidden">No hay tareas</p>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-slate-400 text-xs">
+            &copy; 2026 Gestor de Tareas
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
