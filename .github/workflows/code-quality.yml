@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  JAVA_VERSION: '17'
+  JAVA_VERSION: '21'
 
 jobs:
   checkstyle:
@@ -36,14 +36,6 @@ jobs:
           name: checkstyle-report
           path: target/checkstyle-result.xml
           retention-days: 7
-
-      - name: Add Checkstyle annotation
-        uses: korзу/zap-checkstyle-action@v2
-        if: always()
-        with:
-          checkstyle-format: xml
-          checkstyle-result: target/checkstyle-result.xml
-          checkstyle-version: 10.12.5
 
   spotbugs:
     name: SpotBugs

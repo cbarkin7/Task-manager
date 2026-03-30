@@ -15,22 +15,6 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_DATABASE: taskmanager
-          MYSQL_USER: taskuser
-          MYSQL_PASSWORD: taskpassword
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,22 +26,11 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      - name: Build with Maven
-        run: mvn clean verify -B -DskipTests=false
-
-      - name: Run tests
-        run: mvn test -B
+      - name: Build, test & verify
+        run: ./mvnw clean verify -B
 
       - name: Generate JaCoCo report
-        run: mvn jacoco:report -B
+        run: ./mvnw jacoco:report -B
         continue-on-error: true
 
       - name: Upload JaCoCo coverage reports
@@ -68,10 +41,7 @@ jobs:
           path: target/site/jacoco/
           retention-days: 14
 
-      - name: Package application
-        run: mvn package -DskipTests -B
-
-      - name: Upload build artifacts
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: task-manager-jar
@@ -90,7 +60,7 @@ jobs:
       - name: Wait for application to be healthy
         run: |
           for i in {1..30}; do
-            if docker compose exec -T app wget --no-verbose --tries=1 --spider http://localhost:8080/actuator/health 2>/dev/null; then
+            if docker compose exec -T app wget --no-verbose --tries=1 --spider http://localhost:8081/actuator/health 2>/dev/null; then
               echo "Application is healthy"
               exit 0
             fi
@@ -121,11 +91,11 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Start application with Docker Compose
-        run: docker compose up -d
+      - name: Build and start application with Docker Compose
+        run: docker compose up -d --build
 
       - name: Run E2E tests
-        run: mvn test -B -De2e.tests.enabled=true
+        run: ./mvnw test -B -De2e.tests.enabled=true
         continue-on-error: true
 
       - name: Collect Docker logs on failure
