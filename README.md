@@ -1,5 +1,14 @@
 # Task Manager
 
+[![CI Pipeline](https://github.com/cbarkin7/Task-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/cbarkin7/Task-manager/actions/workflows/ci.yml)
+[![Code Quality](https://github.com/cbarkin7/Task-manager/actions/workflows/code-quality.yml/badge.svg)](https://github.com/cbarkin7/Task-manager/actions/workflows/code-quality.yml)
+[![CodeQL](https://github.com/cbarkin7/Task-manager/actions/workflows/code-quality.yml/badge.svg?label=CodeQL)](https://github.com/cbarkin7/Task-manager/security/code-scanning)
+![Java](https://img.shields.io/badge/Java-21-007396?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.x-6DB33F?logo=springboot&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-3.8+-C71A36?logo=apachemaven&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 Aplicación de gestión de tareas construida con Spring Boot.
 
 ## Descripción
