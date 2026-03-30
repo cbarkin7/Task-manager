@@ -26,7 +26,7 @@ jobs:
           cache: 'maven'
 
       - name: Run Checkstyle
-        run: mvn checkstyle:check -B
+        run: ./mvnw checkstyle:check -B
         continue-on-error: true
 
       - name: Upload Checkstyle results
@@ -53,7 +53,7 @@ jobs:
           cache: 'maven'
 
       - name: Run SpotBugs
-        run: mvn spotbugs:check -B
+        run: ./mvnw spotbugs:check -B
         continue-on-error: true
 
       - name: Upload SpotBugs results
@@ -83,16 +83,12 @@ jobs:
           queries: security-and-quality
 
       - name: Build project
-        run: mvn compile -B -DskipTests
+        run: ./mvnw compile -B -DskipTests
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:java"
-
-      - name: Upload CodeQL results
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
 
   dependency-check:
     name: OWASP Dependency Check
@@ -110,7 +106,7 @@ jobs:
           cache: 'maven'
 
       - name: Run OWASP Dependency Check
-        run: mvn org.owasp:dependency-check-maven:check -B
+        run: ./mvnw org.owasp:dependency-check-maven:check -B
         continue-on-error: true
 
       - name: Upload dependency check report
