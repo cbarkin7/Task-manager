@@ -25,6 +25,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Grant execute permission to mvnw
+        run: chmod +x mvnw
+
       - name: Run Checkstyle
         run: ./mvnw checkstyle:check -B
         continue-on-error: true
@@ -51,6 +54,9 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
           cache: 'maven'
+
+      - name: Grant execute permission to mvnw
+        run: chmod +x mvnw
 
       - name: Run SpotBugs
         run: ./mvnw spotbugs:check -B
@@ -83,6 +89,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Grant execute permission to mvnw
+        run: chmod +x mvnw
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
@@ -111,6 +120,9 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
           cache: 'maven'
+
+      - name: Grant execute permission to mvnw
+        run: chmod +x mvnw
 
       - name: Run OWASP Dependency Check
         run: ./mvnw org.owasp:dependency-check-maven:check -B

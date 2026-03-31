@@ -26,6 +26,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Grant execute permission to mvnw
+        run: chmod +x mvnw
+
       - name: Build, test & verify
         run: ./mvnw clean verify -B
 
@@ -90,6 +93,9 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
           cache: 'maven'
+
+      - name: Grant execute permission to mvnw
+        run: chmod +x mvnw
 
       - name: Build and start application with Docker Compose
         run: docker compose up -d --build
