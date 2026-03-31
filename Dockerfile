@@ -11,7 +11,6 @@ RUN mvn dependency:go-offline -B
 
 # Copiar código fuente y construir
 COPY src ./src
-COPY .spotbugs.exclude.xml .spotbugs.exclude.xml
 RUN mvn clean package -DskipTests -B
 
 # =============================================================================
