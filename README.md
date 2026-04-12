@@ -11,6 +11,21 @@
 
 Aplicación de gestión de tareas construida con Spring Boot.
 
+> [!NOTE]
+> Nota especial: Task manager sencillo en MVC
+
+> [!TIP]
+> Consejo: no compilar en Java 17 o anteriores
+
+> [!IMPORTANT]
+> Importante: Respetar la versión Springboot del stack
+
+> [!WARNING]
+> Cuidado: Incompatibilidad son tomcat server
+
+> [!CAUTION]
+> Mensaje de precaución
+
 ## Descripción
 
 Task Manager es una API REST para la gestión de tareas que permite crear, leer, actualizar y eliminar tareas. El frontend está servido estáticamente por el propio backend Spring Boot.
